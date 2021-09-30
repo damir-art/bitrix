@@ -1,5 +1,5 @@
 # Темизация Битрикс
-- Курсы для разработчиков: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43
+Шаблон сайта это что-то типа темы сайта в WordPress.
 
 ## Шаблон (тема)
 Тема Битрикса состоит из трёх файлов:
@@ -17,3 +17,43 @@
 - Настройки > Настройки продукта > Сайты > Шаблоны сайтов
 - При создании шаблона из админки, он появится в папке `bitrix/templates`
 - Активировать шаблон: Настройки > Настройки продукта > Сайты > Список сайтов
+
+## Структура шаблона
+- `/bitrix/templates/.default/`
+- `/bitrix/templates/nameTemplate/`
+- `/components/`
+- `/lang/`                       - языковые файлы шаблонов и компонентов
+- `/page_templates/`             - каталог с шаблонами
+- `/page_templates/.content.php` - описание шаблона
+- `/include_areas/`              - файлы включаемых областей
+- `header.php`                   - пролог шаблона
+- `footer.php`                   - эпилог шаблона
+- `style.css`                    - общие стили
+- `template_styles.css`          - стили шаблона
+- `typeMenu.menu_template.php`   - шаблон меню
+- `chain_template.php`           - шаблон хлебных крошек
+- `.content.php`                 - описания и порядок сортировки шаблонов
+- `.section.php`                 - свойства разделов (свойства страницы задаются в теле страницы)
+
+## Обновления
+Битрикс обновляет следующие папки:
+- `/bitrix/modules/` - ядро Битрикс
+- `/bitrix/components/bitrix/` - ядро Битрикс, системные компоненты
+- `/bitrix/tools/`
+- `/bitrix/tools/`
+- `/bitrix/admin/`
+
+## Пролог / Эпилог
+- `/bitrix/templates/templateName/header.php`            - публичный
+- `/bitrix/modules/main/interface/prolog_main_admin.php` - административный
+- `/bitrix/templates/templateName/footer.php`            - публичный
+- `/bitrix/modules/main/interface/epilog_main_admin.php` - административный
+
+## B_PROLOG_INCLUDED
+Данный код нужно вставлять в начало каждого файла к которому нельзя обращаться напрямую:
+
+     <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+
+- header, footer
+- шаблоны сайтов и компонентов
+- файлы: `.parameters.php`, `.description.php`

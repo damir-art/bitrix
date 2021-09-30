@@ -16,7 +16,9 @@
         <?php $APPLICATION->ShowHead(); ?> // Подключение мета-данных и внешних файлов
 
 ## Устанавливаем title
-`<title><?php $APPLICATION->ShowTitle(); ?></title>` берется из index.php `$APPLICATION->SetTitle("Пластиковые окна");`
+    
+    <title><?php $APPLICATION->ShowTitle(); ?></title>
+    // Берется из index.php `$APPLICATION->SetTitle("Пластиковые окна");`
 
 ## Подключаем стили
 $APPLICATION->SetAdditionalCSS() - устаревшая функция
@@ -34,7 +36,8 @@ $APPLICATION->SetAdditionalCSS() - устаревшая функция
             Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css"); 
         ?>
 
-- SITE_TEMPLATE_PATH - путь к активному шаблону, открытой страницы
+- `<?=SITE_TEMPLATE_PATH?>` - путь к корню сайта (текущему шаблону)
+- `<?=SITE_DIR?>` - путь к главной странице сайта
 
 ## Подключаем скрипты
 $APPLICATION->AddHeadScript() - устаревшая функция
@@ -56,7 +59,7 @@ $APPLICATION->AddHeadScript() - устаревшая функция
 ## Подключаем панель администратора
 
     <body>
-        <?php $APPLICATION->ShowPanel(); ?>
+        <div id="panel"><?php $APPLICATION->ShowPanel(); ?></div>
 
 ## Разное
 - Подключение через `Asset::getInstance()` оптимизирует файлы (объединяет, сжимает)
