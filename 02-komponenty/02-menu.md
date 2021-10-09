@@ -43,5 +43,13 @@
 
 ## Самый простой код меню
 
+    <?php if (!empty($arResult)): ?>
+    <ul>
+    <?php foreach($arResult as $arItem): ?>
+        <li><a href="<?=$arItem["LINK"]?>"><?=$arItem["TEXT"]?></a></li>
+    <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+
 ## Разное
 - пункты меню можно редактировать прямо из админки, наведя мышкой по компоненту меню

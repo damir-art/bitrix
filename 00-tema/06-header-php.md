@@ -59,7 +59,7 @@ $APPLICATION->AddHeadScript() - устаревшая функция
 ## Подключаем панель администратора
 
     <body>
-        <div id="panel"><?php $APPLICATION->ShowPanel(); ?></div>
+        <div id="panel"><?php $APPLICATION->ShowPanel(); ?></div> <!-- div не нужен -->
 
 ## Разное
 - Подключение через `Asset::getInstance()` оптимизирует файлы (объединяет, сжимает)
