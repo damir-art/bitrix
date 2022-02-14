@@ -1,23 +1,34 @@
 # header.php
-В header.php попадает код верстки шапки и левого сайдбара (если он есть).
+В `header.php` попадает код верстки шапки и левого сайдбара (если он есть).
 
 Рассмотрим как подключать стили, скрипты, изображения.
 
 Для начала импортируйте пространство имен `use Bitrix\Main\Page\Asset;`:
 
     <?php
-        if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-        use Bitrix\Main\Page\Asset; // Импортируем пространство имён
+        if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die(); // Защищает от открытия файла из браузера напрямую
+        use Bitrix\Main\Page\Asset; // Импортируем пространство имён, D7
+        // Подключает библиотеку для использования Asset::getInstance()->addCss()
     ?>
+
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="<?php echo LANG_CHARSET ?>">
+
 
 Чтобы подключения заработали обращаемся к методу `ShowHead()`:
 
-    <head>
         <?php $APPLICATION->ShowHead(); ?> // Подключение мета-данных и внешних файлов
+    </head>
+
+`ShowHead()` - выводит стили, метатеги, скрипты.
 
 ## Устанавливаем title
     
     <title><?php $APPLICATION->ShowTitle(); ?></title>
+    <?$APPLICATION->ShowMeta("keywords");?>
+    <?$APPLICATION->ShowMeta("description");?>
     // Берется из index.php `$APPLICATION->SetTitle("Пластиковые окна");`
 
 ## Подключаем стили
@@ -36,11 +47,14 @@ $APPLICATION->SetAdditionalCSS() - устаревшая функция
             Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css"); 
         ?>
 
-- `<?=SITE_TEMPLATE_PATH?>` - путь к корню сайта (текущему шаблону)
-- `<?=SITE_DIR?>` - путь к главной странице сайта
+- `<?=SITE_TEMPLATE_PATH?>` - путь к корню шаблона
+    -  /local/templates/test_template
+- `<?=SITE_DIR?>` - путь к корню сайта
+    - /
+- `template_styles.css` - стили дизайна шаблона
 
 ## Подключаем скрипты
-$APPLICATION->AddHeadScript() - устаревшая функция
+`$APPLICATION->AddHeadScript()` - устаревшая функция
 
     <?php
         Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/bootstrap.bundle.js"); // код подключения JS-файла
@@ -64,4 +78,4 @@ $APPLICATION->AddHeadScript() - устаревшая функция
 ## Разное
 - Подключение через `Asset::getInstance()` оптимизирует файлы (объединяет, сжимает)
 - Во время разработки сайта, можно отключить сжатие файлов: `Настройки > Настройки модулей > Главный модуль > Оптимизация CSS`
-- Во время разработки сайта, можно отключить автокеширование: `Настройки > Настройки модулей > Автокеширование > Выключить автокеширование/Выключить управляемый кеш/Очистить все файлы кеша`
+- Во время разработки сайта, также можно отключить автокеширование: `Настройки > Настройки модулей > Автокеширование > Выключить автокеширование/Выключить управляемый кеш/Очистить все файлы кеша`
