@@ -8,14 +8,15 @@
 - указываем чтобы все они подключались из `.default`
 - для этого создаём константу указывающую на дефолтный шаблон
 
+## Константа
 Код константы записываем в корневой файл `index.php` или `/bitrix/php_interface/init.php`:
 
     define("DEFAULT_TEMPLATE_PATH", '/local/templates/.default')
 
 Везде где в шаблонах стоит константа `SITE_TEMPLATE_PATH`, меняем на `DEFAULT_TEMPLATE_PATH`. Если файл `init.php` отсутствует то создаём его.
 
+ShowHead() подключает template_style.css, если создаётся шаблон .default и туда помещают template_style.css, то к нему нужно пропистать путь через константу.
+
 ## Разное
 - .default не является полноценным шаблоном, содержит файлы и компоненты доступные всем шаблонам сайта
-- `/local/components/compName/`
-- `/local/templates/.default/components/bitrix/menu/site-name-menu/`
 - битрикс сначала ищет компоненты в текущей теме, потом в папке `.default`, потом уже в ядре битрикса

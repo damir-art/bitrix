@@ -12,3 +12,4 @@
 
     CIBlockElement::GetIBlockByID
     CIBlockElement::GetList
+    CFile::ResizeImageGet() - работаем с изображениями

@@ -16,3 +16,8 @@
 - файл включаемой области должен начинаться с
     - if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 - код вызова компонента: https://dev.1c-bitrix.ru/user_help/components/sluzhebnie/included_regions/main_include.php
+
+## Разное
+- $APPLICATION->IncludeComponent()
+- $APPLICATION->IncludeFile()
+- /include/

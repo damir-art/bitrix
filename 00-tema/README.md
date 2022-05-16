@@ -49,3 +49,6 @@
 - header, footer
 - шаблоны сайтов и компонентов
 - файлы: `.parameters.php`, `.description.php`
+
+## Разное
+- специальные константы: https://dev.1c-bitrix.ru/api_help/main/general/constants.php

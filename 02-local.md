@@ -19,7 +19,7 @@ PS: можно перенести из `/bitrix/templates/` в `/local/templates
 
 ## Стандартные шаблоны
 Стандартные пользовательские шаблоны:
-- `/local/templates/.default/` - шаблон для компонентов
+- `/local/templates/.default/` - шаблон для компонентов, общие стили и скрипты
 - `/local/templates/template_name/` - шаблон для внутренних страниц
 - `/local/templates/template_name_front/` - шаблона главной страницы
 

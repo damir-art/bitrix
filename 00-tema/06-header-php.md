@@ -12,7 +12,7 @@
     ?>
 
     <!DOCTYPE html>
-    <html>
+    <html language_id>
         <head>
             <meta charset="<?php echo LANG_CHARSET ?>">
 
@@ -40,7 +40,7 @@ $APPLICATION->SetAdditionalCSS() - устаревшая функция
     ?>
 
     <head>
-        <?php $APPLICATION->ShowHead(); ?> // Подключение мета-данных и внешних файлов
+        <?php $APPLICATION->ShowHead(); ?> // Подключение мета-данных и внешних файлов, template_style.css
         <title><?php $APPLICATION->ShowTitle(); ?></title>
         <?php
             Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/bootstrap.css"); // код подключения CSS-файла

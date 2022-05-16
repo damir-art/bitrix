@@ -12,12 +12,16 @@
 
 ## Стандартный код шаблона компонента
 
-        <?php foreach($arResult["ITEMS"] as $arItem): ?>
-            <?php echo $arItem["NAME"]; ?>
-            <?php echo $arItem["PREVIEW_PICTURE"]["SRC"]; ?>
-            <?php echo $arItem["PREVIEW_TEXT"]; ?>
-            <?php echo $arItem["DETAIL_PAGE_URL"]; ?>
-        <?php endforeach; ?>
+    <?php foreach($arResult["ITEMS"] as $arItem): ?>
+        <?php echo $arItem["NAME"]; ?>
+        <?php echo $arItem["PREVIEW_PICTURE"]["SRC"]; ?>
+        <?php echo $arItem["PREVIEW_TEXT"]; ?>
+        <?php echo $arItem["DETAIL_PAGE_URL"]; ?>
+    <?php endforeach; ?>
+
+## Кнопки редактирования
+Кнопки редактирования элементов для публичной части:
+- `GetEditAreaId()`
 
 ## Разное
 В начале каждого файла `template.php` шаблона компонента нужно прописать:
