@@ -50,8 +50,19 @@ PS: попробовать сначала `well-known` заменить на `we
 ## Разное
 - Часть данных Битрикс хранит в файлах, а остальное в БД
 
+## Безонасность
+- запретить регистрацию пользователей "Настройка главного модуля",
+
+## Настройки
+Настройка продукта:
+- Сайты > Список сайтов - можно создать несколько сайтов.
+
 ## Ссылки
 - Документация: https://dev.1c-bitrix.ru/docs/php.php
 - Видеокурс: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=95
 
-https://www.youtube.com/watch?v=4pawCupacWo&list=PLY4rE9dstrJyqAWUVlT7PLGjdmPEwhfg6&index=1
+https://www.youtube.com/watch?v=FjVs7JVOD3U&list=PL8Kt1m2oRch5M1bA334BRwFybdDe38Byd&index=6  
+https://www.youtube.com/watch?v=4pawCupacWo&list=PLY4rE9dstrJyqAWUVlT7PLGjdmPEwhfg6&index=1  
+https://hmarketing.ru/blog/bitrix/rabota-s-elementami-infoblokov-cherez-orm/  
+https://hmarketing.ru/blog/bitrix/  
+https://hmarketing.ru/blog/php/  
