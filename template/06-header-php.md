@@ -1,79 +1,58 @@
 # header.php
-В `header.php` попадает код верстки шапки и левого сайдбара (если он есть).
-
-Рассмотрим как подключать стили, скрипты, изображения.
+В `header.php` попадает код верстки шапки и левого сайдбара (если он есть).  
+Рассмотрим как подключать стили, скрипты, изображения.  
 
 Для начала импортируйте пространство имен `use Bitrix\Main\Page\Asset;`:
 
-    <?php
-        if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die(); // Защищает от открытия файла из браузера напрямую
-        use Bitrix\Main\Page\Asset; // Импортируем пространство имён, D7
-        // Подключает библиотеку для использования Asset::getInstance()->addCss()
-    ?>
-
     <!DOCTYPE html>
-    <html language_id>
-        <head>
-            <meta charset="<?php echo LANG_CHARSET ?>">
-
+    <html lang="<?php echo LANGUAGE_ID; ?>">
+      <head>
+        <meta charset="<?php echo LANG_CHARSET ?>"> // не нужно если есть ShowHead()
 
 Чтобы подключения заработали обращаемся к методу `ShowHead()`:
 
         <?php $APPLICATION->ShowHead(); ?> // Подключение мета-данных и внешних файлов
-    </head>
+      </head>
 
 `ShowHead()` - выводит стили, метатеги, скрипты.
 
 ## Устанавливаем title
     
     <title><?php $APPLICATION->ShowTitle(); ?></title>
-    <?$APPLICATION->ShowMeta("keywords");?>
-    <?$APPLICATION->ShowMeta("description");?>
-    // Берется из index.php `$APPLICATION->SetTitle("Пластиковые окна");`
+    // <?$APPLICATION->ShowMeta("keywords");?> // не нужно если есть в структуре
+    // <?$APPLICATION->ShowMeta("description");?> // не нужно если есть в структуре
+    // Берется из index.php `$APPLICATION->SetTitle("Пластиковые окна");` или из структуры
 
 ## Подключаем стили
-$APPLICATION->SetAdditionalCSS() - устаревшая функция
+`$APPLICATION->SetAdditionalCSS()` - подключение стилей:
 
-    <?php
-        if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-        use Bitrix\Main\Page\Asset; // Импортируем пространство имён
-    ?>
-
-    <head>
-        <?php $APPLICATION->ShowHead(); ?> // Подключение мета-данных и внешних файлов, template_style.css
-        <title><?php $APPLICATION->ShowTitle(); ?></title>
-        <?php
-            Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/bootstrap.css"); // код подключения CSS-файла
-            Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/css/style.css"); 
-        ?>
-
-- `<?=SITE_TEMPLATE_PATH?>` - путь к корню шаблона
-    -  /local/templates/test_template
-- `<?=SITE_DIR?>` - путь к корню сайта
-    - /
-- `template_styles.css` - стили дизайна шаблона
+    <?php $APPLICATION->SetAdditionalCSS(SITE_TEMPLATE_PATH."/css/style.css" ); ?>
 
 ## Подключаем скрипты
-`$APPLICATION->AddHeadScript()` - устаревшая функция
+`$APPLICATION->AddHeadScript()` - подключение скриптов:
 
-    <?php
-        Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/bootstrap.bundle.js"); // код подключения JS-файла
-        Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/js/custom.js");
-    ?>
+    <?php $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/js/script.js" ); ?>
 
 ## Подключаем строки
 Можно подключать отдельные мета-теги, фавиконку или шрифты гугл:
 
-    Asset::getInstance()->addString('<meta name="viewport" content="width=device-width, initial-scale=1" />');
+    <?php $APPLICATION->AddHeadString("<meta name='viewport' content='width=device-width, initial-scale=1'>"); ?>
 
 ## Подключаем изображения
 
-    <img src="<?php echo SITE_TEMPLATE_PATH ?>/img/brand.png" alt="" width="50" height="50" />
+    <img src="<?php echo SITE_TEMPLATE_PATH ?>/img/logo.png" alt="" width="50" height="50" />
+
+Разное:
+- `<?php echo SITE_TEMPLATE_PATH; ?>` - путь к корню шаблона: `/local/templates/test_template`,
+- `<?php echo SITE_DIR; ?>` - путь к корню сайта: `/`,
+- `template_styles.css` - стили дизайна шаблона.
 
 ## Подключаем панель администратора
 
     <body>
-        <div id="panel"><?php $APPLICATION->ShowPanel(); ?></div> <!-- div не нужен -->
+      <div id="panel">
+        <?php $APPLICATION->ShowPanel(); ?>
+      </div>
 
 ## Разное
 - Подключение через `Asset::getInstance()` оптимизирует файлы (объединяет, сжимает)

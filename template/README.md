@@ -3,22 +3,22 @@
 
 - сначала определяем сколько будет шаблонов
 - стандартно:
-     - .default
-     - шаблон для главной
-     - шаблон для внутренних
+  - .default,
+  - шаблон для главной,
+  - шаблон для внутренних,
 - редактировать шаблон можно по адресу:
-     - `Админка > Настройки > Настройки продукта > Сайты > Шаблоны сайтов`
-- если шаблоны главной и внутренних страниц отличаются не сильно, то можно воспользоваться одним шаблоном, а отличия в них регулировать с помощью условий
+  - `Админка > Настройки > Настройки продукта > Сайты > Шаблоны сайтов`,
+- если шаблоны главной и внутренних страниц отличаются не сильно, то можно воспользоваться одним шаблоном, а отличия в них регулировать с помощью условий.
 
 ## Структура шаблона
 Тема Битрикса состоит из трёх файлов. Определите какая часть верстки должна быть прологом, эпилогом, рабочей областью:
 - пролог: header.php
-- рабочая область `#WORK_AREA#`: index.php (находится в корне сайта)
-     - данный тег вставляем вместо контента
+- рабочая область `#WORK_AREA#`: index.php (находится в корне сайта или раздела)
+  - тег `#WORK_AREA#` вставляем вместо контента
 - эпилог: footer.php
 
 ### bitrix/templates/
-При установки сайта, шаблон по-умолчанию хранится в `/bitrix/templates/`. Например `furniture_blue` шаблон который мы выбрали при установки Битрикса. Внтури папки `/bitrix/` ничего менять нельзя.
+При установки сайта, шаблон по-умолчанию хранится в `/bitrix/templates/`. Например `furniture_blue` шаблон который мы выбрали при установке Битрикса. Внтури папки `/bitrix/` ничего менять нельзя.
 
 ### Шаблон от Битрикс
 Битрикс может самостоятельно создать для вас шаблон:
@@ -29,26 +29,27 @@
 
 ## Обновления
 Битрикс обновляет следующие папки:
-- `/bitrix/modules/` - ядро Битрикс
-- `/bitrix/components/bitrix/` - ядро Битрикс, системные компоненты
-- `/bitrix/tools/`
-- `/bitrix/tools/`
-- `/bitrix/admin/`
+- `/bitrix/modules/` - ядро Битрикс,
+- `/bitrix/components/bitrix/` - ядро Битрикс, системные компоненты,
+- `/bitrix/tools/`,
+- `/bitrix/tools/`,
+- `/bitrix/admin/`.
 
 ## Пролог / Эпилог
-- `/bitrix/templates/templateName/header.php`            - публичный
-- `/bitrix/modules/main/interface/prolog_main_admin.php` - административный
-- `/bitrix/templates/templateName/footer.php`            - публичный
-- `/bitrix/modules/main/interface/epilog_main_admin.php` - административный
+- `/bitrix/templates/templateName/header.php`            - публичный,
+- `/bitrix/modules/main/interface/prolog_main_admin.php` - административный,
+- `/bitrix/templates/templateName/footer.php`            - публичный,
+- `/bitrix/modules/main/interface/epilog_main_admin.php` - административный.
 
 ## B_PROLOG_INCLUDED
 Данный код нужно вставлять в начало каждого файла к которому нельзя обращаться напрямую:
 
-     <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+    <?php if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die(); ?>
 
-- header, footer
-- шаблоны сайтов и компонентов
+- header, footer,
+- шаблоны сайтов и компонентов,
 - файлы: `.parameters.php`, `.description.php`
 
 ## Разное
-- специальные константы: https://dev.1c-bitrix.ru/api_help/main/general/constants.php
+- Специальные константы: https://dev.1c-bitrix.ru/api_help/main/general/constants.php
+- Основные функции шаблона: https://ydmitry.ru/blog/osnovnye-funktsii-vyvoda-v-shablonakh-sayta-1s-bitriks/

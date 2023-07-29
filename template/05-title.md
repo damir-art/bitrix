@@ -13,19 +13,8 @@
 
     // index.php
     $APPLICATION->SetTitle("Заголовок страницы");   // устанавливает title и h1
-    SetPageProperty("title", "Заголовок страницы"); // устанавливает title и h1
+    SetPageProperty("title", "Заголовок страницы"); // устанавливает title
 
     // header.php
     title: $APPLICATION->ShowTitle();
     h1:    $APPLICATION->ShowTitle(false); // если false то берет значение из SetTitle
-
-## Работаем со стилями
-header.php
-
-    $APPLICATION->ShowCSS(); // подключение стилей текущего шаблона
-    $APPLICATION->SetAdditionalCSS("/...css");
-
-## Работаем с мета и свойствами
-header.php
-
-    $APPLICATION->ShowMeta("keywords");
