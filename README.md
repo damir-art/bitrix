@@ -67,7 +67,7 @@ PS: попробовать сначала `well-known` заменить на `we
 - Курс REST API:         https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=266
 - Бот платформа Б24:     https://dev.1c-bitrix.ru/learning/course/?COURSE_ID=93
 
-https://www.youtube.com/watch?v=FjVs7JVOD3U&list=PL8Kt1m2oRch5M1bA334BRwFybdDe38Byd&index=6  
+https://www.youtube.com/watch?v=Eid7ggQrM5E&list=PL8Kt1m2oRch5M1bA334BRwFybdDe38Byd&index=8  
 https://www.youtube.com/watch?v=4pawCupacWo&list=PLY4rE9dstrJyqAWUVlT7PLGjdmPEwhfg6&index=1  
 https://hmarketing.ru/blog/bitrix/rabota-s-elementami-infoblokov-cherez-orm/  
 https://hmarketing.ru/blog/bitrix/  
@@ -76,3 +76,5 @@ https://hmarketing.ru/blog/php/
 Создаём форму: https://doka.guide/js/deal-with-forms/  
 PHP: https://snipp.ru/php?page=8  
 20 PHP правил для начинающих: https://ydmitry.ru/blog/php-20-praktik-kotorym-stoit-sledovat/
+
+Подключение к Битрикс24: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=41&CHAPTER_ID=08545
