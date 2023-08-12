@@ -1,0 +1,13 @@
+# Каталог из простых компонентов
+https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=34&LESSON_ID=7250  
+Создаём каталог не из комплексного компонента а из простых компонентов.  
+Торговый каталог  
+Умный фильтр.
+
+## Настройка ЧПУ для каталога на простых компонентах
+
+## Загрузка массово изображений
+Работа с Эксель: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=34&LESSON_ID=13596  
+Решение проблем с крякозябрами.
+
+https://1ps.ru/blog/sites/2019/sozdanie-internet-magazina-na-bitriks/
