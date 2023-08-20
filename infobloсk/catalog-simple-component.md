@@ -9,5 +9,3 @@ https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=34&LESSON_ID=7250
 ## Загрузка массово изображений
 Работа с Эксель: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=34&LESSON_ID=13596  
 Решение проблем с крякозябрами.
-
-https://1ps.ru/blog/sites/2019/sozdanie-internet-magazina-na-bitriks/

@@ -89,3 +89,10 @@ PHP: https://snipp.ru/php?page=8
 MySQL https://www.youtube.com/watch?v=xeDYyIkb2GQ&list=PLJmPn1WIe0aCFJfxp2g0EMIcPtqNR28Q1
 
 Инструкция по установке на виртуальную машину: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=34&LESSON_ID=13032 (внизу страницы)
+
+Создание интернет магазина, торговых предложений, умного фильтра, спецпредложений: https://1ps.ru/blog/sites/2019/sozdanie-internet-magazina-na-bitriks/
+
+Здравствуйте
+Всё выполнил
+Сложно морально, переоценил свои возможности
+Желаю успехов
