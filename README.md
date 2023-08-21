@@ -92,7 +92,4 @@ MySQL https://www.youtube.com/watch?v=xeDYyIkb2GQ&list=PLJmPn1WIe0aCFJfxp2g0EMIc
 
 Создание интернет магазина, торговых предложений, умного фильтра, спецпредложений: https://1ps.ru/blog/sites/2019/sozdanie-internet-magazina-na-bitriks/
 
-Здравствуйте
-Всё выполнил
-Сложно морально, переоценил свои возможности
-Желаю успехов
+Блог: https://www.tichiy.ru/wiki/
