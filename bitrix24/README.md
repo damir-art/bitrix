@@ -1,21 +1,18 @@
 # Битрикс 24
-Встраиваемся в интерфейс: https://youtu.be/odx3zdi1BrQ?t=545
-
 Б24 существует в коробочной и облачной версии.
 
-В Б24 всё является ядром: админка и публичная части, а ядро править нельзя. Копировать шаблон компонента в Б24 тоже нельзя.
+Шаблон Б24 в коробке хранится, в:
+- bitrix/templates/bitrix24
 
-## Как кастомизировать?
-- REST-приложения, (облако + коробка)
-- Отложенные функции, (короба)
-- Типы пользовательских полей, (облако + коробка)
-- Модификации на стороне клиента (JS), (коробка)
-
-### REST-приложения
-Маркетплейс Битрикс24: https://www.youtube.com/playlist?list=PLzPivwyXljVV9XW3y-2-00mKZ8A-czszi
+Маркетплейс Битрикс24:
+- https://www.youtube.com/playlist?list=PLzPivwyXljVV9XW3y-2-00mKZ8A-czszi
 
 Блог:
 - https://www.youtube.com/@bitrix24_ru
 
 Смарт-процессы:
 - https://www.youtube.com/watch?v=2XW625NRP88&list=PLP5X4L44hBrtoPlEp299EpLmsT18clcM8&index=4
+
+Для разрабов:
+- https://www.bitrix24.ru/apps/dev.php
+- https://bx24devbook.website.yandexcloud.net/S_cego_nacat.html

@@ -4,6 +4,8 @@ https://dev.1c-bitrix.ru/community/blogs/dev_bx/connection-of-css-and-js-files-i
 https://dev.1c-bitrix.ru/community/webdev/user/87386/blog/11342/ - кеширование  
 https://www.youtube.com/watch?v=1_xYUQzQHj8
 
+Объекты: https://vadim24.ru/blog/bitrix/obekty-application-context-request-server-v-bitriks-d7/
+
 - Стили и скрипты:     `style-script.md`
 - Подключение модулей: `module.md`
 - Локализация:         `local.md`

@@ -75,6 +75,8 @@ https://hmarketing.ru/blog/bitrix/rabota-s-elementami-infoblokov-cherez-orm/
 https://hmarketing.ru/blog/bitrix/  
 https://hmarketing.ru/blog/php/  
 
+Блог: https://almat.su
+
 Создаём форму: https://doka.guide/js/deal-with-forms/  
 PHP: https://snipp.ru/php?page=8  
 20 PHP правил для начинающих: https://ydmitry.ru/blog/php-20-praktik-kotorym-stoit-sledovat/
@@ -92,4 +94,5 @@ MySQL https://www.youtube.com/watch?v=xeDYyIkb2GQ&list=PLJmPn1WIe0aCFJfxp2g0EMIc
 
 Создание интернет магазина, торговых предложений, умного фильтра, спецпредложений: https://1ps.ru/blog/sites/2019/sozdanie-internet-magazina-na-bitriks/
 
-Блог: https://www.tichiy.ru/wiki/
+Блог: https://www.tichiy.ru/wiki/  
+Ютуб канал: https://www.youtube.com/watch?v=eh6anywHL-U&list=PLoFURCeom_FW69pa7TQNpMsBE2s2gdu-y
