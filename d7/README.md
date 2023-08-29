@@ -89,27 +89,27 @@ D7 - новый API Битрикс, с использование простар
 - оба метода возвращают массив полями Crispy и consoleT1Cloud
 - значения полей true или false
 
-TEST_RESOURCES - $code
-public static function getEntityTypeIdByCode($code) получаю id смарт процесса
-public static function getItemsByParameters($entityTypeId, array $parameters): array для получения элементов смартпроцессов по фильтру, можно работать как с ORM
+TEST_RESOURCES - $code  
+public static function getEntityTypeIdByCode($code) получаю id смарт процесса  
+public static function getItemsByParameters($entityTypeId, array $parameters): array для получения  элементов смартпроцессов по фильтру, можно работать как с ORM
 
 public static function getItem($entityTypeId, $entityId) получает id смарт процесса и id элемента смарт процесса
 
-после того как данные получили:
+после того как данные получили:  
 local/php_interface/yolva/classes/ServiceContainer/Operations/BeforeAddQuote.php
 
-со строчки 25
-getData(); массив получаем
+со строчки 25  
+getData(); массив получаем  
 
-1. метод:
-EstimateHelper::checkDeliveryPlatform
+1. метод:  
+EstimateHelper::checkDeliveryPlatform  
 - получив ID сметы, необходимо из смарт-процесса продукты сметы выбрать все элементы, с привязкой к полученно ID сметы
 - перебрая полученные элементы и смотрим поле продуктовый каталог (считываем id элемента смарт-процесса продуктовый каталог)
 - считываем данные по найденному ID элемента смарт-процесса продуктовый каталог
 - проверяем значение в поле платформа предоставления (enumerate)
 - ищем в id смете есть хотябы по одному Crispy и consoleT1Cloud (потом прерываем перебор)
 
-2. метод:
+2. метод:  
 TestResourcesHelper::checkDeliveryPlatform
 - почти тоже самое только начинается с ID тестовых ресурсов
 - получив ID элемента СП (смарт-процесс) тестовые ресурсы, необходимо из смарт-процесса `тестовые продукты` выбрать все элементы, с привязкой к полученно ID `тестовые ресурсы`
