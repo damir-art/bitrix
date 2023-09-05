@@ -4,12 +4,28 @@
 Блог новостей Битрикс.
 
 ## Установка 1С-Битрикс
+С 2023го года нужно устанавливать Битрикс на версию PHP 8 или выше.
+
 - OpenServer:
-  - Apache_2.4-PHP_7.2-7.4
-  - PHP_7.4
-  - MySQL-5.7
+  - Apache_2.4-PHP_8.0-8.1
+  - PHP_8.0
+  - MySQL-5.6
+- Если при установки возникнет ошибка то нужно в файле: `/bitrix/modules/main/lib/security/random.php`
+  - см. конец страницы: https://dev.1c-bitrix.ru/support/forum/forum6/topic153708/
+  - в методе `getStringByCharsets($length, $charsetList){ }` строка 114
+
+В начале метода написать (и удалить после установки Битрикс):
+
+    // Временно возвращаем "свою" рандомную строку
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $randstring = '';
+    for ($i = 0; $i < 10; $i++) {
+      $randstring = $characters[rand(0, strlen($characters))];
+    }
+    return $randstring; // Конец
+
 - Скрипт проверки сервера: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=135&LESSON_ID=5412
-- Создаём БД в phpMyAdmin (root без пароля) utf8_general_ci
+- Создаём БД в phpMyAdmin (root без пароля) utf8_general_ci (можно не создавать)
 - Скрипт установки Битрикс: https://www.1c-bitrix.ru/download/cms.php
 - 1C-Битрикс: Управление сайтом -> Бизнес
 - Снимаем галочку "Регистрация продукта"
@@ -30,8 +46,8 @@
 
 ## Проблема со стилями внутри админки
 Например если не прогрузились стили в элементах новостей и т.п.
-- OpenServer > Дополнительно > Конфигурация > Apache_2.4-PHP_7.2-7.4
-- В файле Apache_2.4-PHP_7.2-7.4_server.conf ищем `well-known` заменяем на `well-known|default`
+- OpenServer > Дополнительно > Конфигурация > Apache_2.4-PHP_7.2-7.4 (откроется два файла)
+- В файле Apache_2.4-PHP_7.2-7.4**_server.conf** ищем `well-known` заменяем на `well-known|default`
 - Перезагружаем OpenServer
 
 ### Для Apache 2.4 PHP 7.2-7.4 Nginx_1.19
@@ -58,43 +74,3 @@ PS: попробовать сначала `well-known` заменить на `we
 ## Настройки
 Настройка продукта:
 - Сайты > Список сайтов - можно создать несколько сайтов.
-
-## Ссылки
-- Документация: https://dev.1c-bitrix.ru/docs/php.php
-- Видеокурс: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=95
-- Курс Битрикс 24: https://www.bitrix24.ru/features/pages/training.php
-- Приложения REST и интеграция с Б24: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=99
-- Документация REST:     https://dev.1c-bitrix.ru/rest_help/
-- Документация REST API: https://www.bitrix24.ru/apps/app/bitrix.restapi/
-- Курс REST API:         https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=266
-- Бот платформа Б24:     https://dev.1c-bitrix.ru/learning/course/?COURSE_ID=93
-
-https://www.acrit-studio.ru/pantry-programmer/knowledge-base/  
-https://href.kz/blog/list/bitrix  
-https://www.youtube.com/watch?v=Eid7ggQrM5E&list=PL8Kt1m2oRch5M1bA334BRwFybdDe38Byd&index=8  
-https://www.youtube.com/watch?v=4pawCupacWo&list=PLY4rE9dstrJyqAWUVlT7PLGjdmPEwhfg6&index=1  
-https://hmarketing.ru/blog/bitrix/rabota-s-elementami-infoblokov-cherez-orm/  
-https://hmarketing.ru/blog/bitrix/  
-https://hmarketing.ru/blog/php/  
-
-Блог: https://almat.su
-
-Создаём форму: https://doka.guide/js/deal-with-forms/  
-PHP: https://snipp.ru/php?page=8  
-20 PHP правил для начинающих: https://ydmitry.ru/blog/php-20-praktik-kotorym-stoit-sledovat/
-
-Подключение к Битрикс24: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=41&CHAPTER_ID=08545  
-События Битрикс: https://www.youtube.com/@bx-vadim/videos  
-Вебхуки Б24: https://www.youtube.com/watch?v=A4J3rChhhYY  
-Интеграция Б24 + сайт: https://www.youtube.com/watch?v=gfFk2AB-X-U  
-Создаём приложение для Б24 через REST API: https://www.youtube.com/watch?v=4-AHCMKmvZo  
-Интеграции Б24 и сайт: https://www.intervolga.ru/blog/bitrix24/integratsiya-bitriks24-s-saytom-vosem-krasivykh-i-ne-ochen-sposobov/?ysclid=lkppso97f290787591  
-
-MySQL https://www.youtube.com/watch?v=xeDYyIkb2GQ&list=PLJmPn1WIe0aCFJfxp2g0EMIcPtqNR28Q1
-
-Инструкция по установке на виртуальную машину: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=34&LESSON_ID=13032 (внизу страницы)
-
-Создание интернет магазина, торговых предложений, умного фильтра, спецпредложений: https://1ps.ru/blog/sites/2019/sozdanie-internet-magazina-na-bitriks/
-
-Блог: https://www.tichiy.ru/wiki/  
-Ютуб канал: https://www.youtube.com/watch?v=eh6anywHL-U&list=PLoFURCeom_FW69pa7TQNpMsBE2s2gdu-y

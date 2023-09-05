@@ -1,115 +1,111 @@
 # Битрикс D7
-D7 это в первую очередь ядро. В котором есть и новый способ написания кода и ORM.
+D7 это в первую очередь ядро, в котором есть новый способ написания кода и ORM.  
+Имена таблиц инфоблоков и названия полей: https://dev.1c-bitrix.ru/api_help/iblock/fields.php
 
-## Как выбирать
+# Работаем с инфоблоками
+- сначала получем ID или CODE инфоблока, через `IblockTable::getList()`
+- за тем по полученному ID или CODE, выбираем элементы инфоблока, свойства, разделы и т.д.
 
-Фильтруем по ID  
-Смотрим поля  
-Выбираем по полям  
-Производим действия
+Выберем все новости на сайте. Создаём страницу test.php, в ней размещаем код. Например перейдя в админку новосте у него в URL будет `type=news`, `IBLOCK_ID=1`.
 
-    // Пройтись по всей базе Контактов, везде где поля Имя и Фамилия пустое - указать значение Нет данных 
-    $contacts = \Bitrix\Crm\ContactTable::getList([
-      'filter' => [ 'ID' => 253 ],
-      'count_total' => 1
+    // Перед использованием модуля инфоблока подключаем его
+    \Bitrix\Main\Loader::includeModule('iblock');
+
+## Выборка инфоблоков:
+TypeTable - `b_iblock_type` имя таблицы в БД.
+
+    \Bitrix\Iblock\TypeTable::getList();                // Список типов инфоблоков
+    \Bitrix\Iblock\IblockTable::getList();              // Список инфоблоков
+    \Bitrix\Iblock\PropertyTable::getList();            // Список свойств инфоблоков
+    \Bitrix\Iblock\PropertyEnumerationTable::getList(); // Список значений свойств (множественных), хранимых отдельно
+    \Bitrix\Iblock\SectionTable::getList();             // Список разделы инфоблоков
+    \Bitrix\Iblock\ElementTable::getList();             // Список элементов инфоблоков
+    \Bitrix\Iblock\InheritedPropertyTable::getList();   // Список наследуемых свойств (SEO шаблоны)
+
+- `->fetch()` - получаем первый элемент из выборки (массив), можно использовать в цикле для перебора,
+- `->fetchAll()` - получаем все элементы из выборки (массив массивов),
+
+### Все типы инфоблоков
+Пример, получаем список всех типов инфоблоков на сайте:
+
+    $iblockTypeList = \Bitrix\Iblock\TypeTable::getList()->fetchAll();
+
+    echo '<pre>';
+    print_r($iblockTypeList); // Получаем список всех типов инфоблоков на сайте
+    echo '</pre>';
+
+### Получаем инфоблок
+Получаем инфоблок по его ID или CODE:
+
+    // Получаем инфоблок по его CODE или ID
+    $iblockNews = \Bitrix\Iblock\IblockTable::getList([
+      'filter' => ['CODE' => 'news'],
+    ])->fetch();
+
+    echo '<pre>';
+    print_r($iblockNews['CODE']); // news
+    print_r($iblockNews['ID']);   // 1
+    echo '</pre>';
+
+### Свойства инфоблока
+Выводим свойства полученного инфоблока. Чтобы получить имя поля `IBLOCK_ID` (не его значение), нужно вывести все свойства инфоблока:
+
+    // Получение списка свойств информационного блока
+    $iblockNewsProps = \Bitrix\Iblock\PropertyTable::getList([
+      'filter' => ['IBLOCK_ID' => $iblockNews['ID']],
+    ])->fetch();
+
+    echo '<pre>';
+    print_r($iblockNewsProps);
+    echo '</pre>';
+
+### Множественное свойство
+Свойства бывают как у инфоблоков так и у элементов инфоблока.  
+Получаем множественные свойства инфоблоков.  
+Сначала выводим список всех пользовательских свойств:  
+  `\Bitrix\Iblock\PropertyEnumerationTable::getList()->fetchAll();`  
+Затем получаем пользовательское свойство по его `PROPERTY_ID`.
+
+    // Получение списка множественных свойств информационного блока
+    $dbEnums = \Bitrix\Iblock\PropertyEnumerationTable::getList([
+      'order' => array('SORT' => 'asc'),
+      'filter' => ['PROPERTY_ID' => $arIblockProp[ID]],
     ]);
 
-## Разное
-Сущности CRM: https://dev.1c-bitrix.ru/user_help/service/crm/index.php
-
-Примеры по методам getList, Add, Delete, Update и т.д. https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=3570
-
-Единые методы у всех сущностей, единые стандартизированные параметры, единые 9 событий.
-
-getList: https://dev.1c-bitrix.ru/learning/course/index.php/lesson.php?COURSE_ID=43&LESSON_ID=5753
-операции: https://dev.1c-bitrix.ru/learning/course/index.php/lesson.php?COURSE_ID=43&LESSON_ID=2244
-
-Выборка элементов в D7:
-
-    $comps = \Bitrix\Crm\CompanyTable::getList([
-      'filter' => [ 'ID' => 1564 ],
-      'select' => [ 'ID', 'TITLE', 'UF_CRM_1660115730' ],
-      'count_total' => 1
-    ]);
-
-    // echo 'SELECTED: '. $comps -> getCount() . '<br />'; // Всего элементов
-    // 'filter' => [ 'ID' => 1564, 'UF_CRM_1660115730' => false ],
-
-    $i = 0;
-    while ( $comp = $comps->fetch() ) {
-      echo '<pre>';
-      print_r($comp);
-      echo '</pre>';
-      if( $i == 5 ) {
-        break; // для вывода 5 компаний, а не всех
-      }
-      $i++;
+    while($arEnum = $dbEnums->fetch()) {
+      // В существующем массиве создаём ключ ENUM_LIST и в него добавляем массивы свойств по ID
+      $arIblockProp['ENUM_LIST'][$arEnum['ID']] = $arEnum;
     }
 
-    // $result = \Bitrix\Crm\CompanyTable::delete(1683); // удалить элемент
+    echo '<pre>';
+    print_r($arIblockProp);
+    echo '</pre>';
 
-https://blog.budagov.ru/bitrix-d7-dlya-infoblokov/  
-https://www.intervolga.ru/blog/projects/d7-analogi-lyubimykh-funktsiy-v-1s-bitriks/ - примеры D7 со старыми аналогами  
-https://dev.1c-bitrix.ru/community/blogs/dev_bx/connection-of-css-and-js-files-in-the-component-.php - подключение стилей в шаблоне компонентов  
-https://dev.1c-bitrix.ru/community/webdev/user/87386/blog/11342/ - кеширование  
-https://www.youtube.com/watch?v=1_xYUQzQHj8
+## Выборка элементов
+ElementTable - `b_iblock_element` имя таблицы в БД.
 
-Объекты: https://vadim24.ru/blog/bitrix/obekty-application-context-request-server-v-bitriks-d7/
+Получаем все значения полей элемента, чтобы отфильтровать по необходимому:
 
-- Стили и скрипты:     `style-script.md`
-- Подключение модулей: `module.md`
-- Локализация:         `local.md`
-- Файловая структура:  `file.md`
-- Отладка:             `debug.md`
-- $_GET, $_POST:       `get-post.md`
-- Cookie:              `cookie.md`
-- Почтовые события:    `send.php`
-- Разное
-  - `header-php.md`
+    $dbItems = \Bitrix\Iblock\ElementTable::getList([])->fetch();
 
-D7 - новый API Битрикс, с использование простарнства имён. Перед началом разработки, убедитесь что в выбранном вами модуле (чье АПИ вы будете использовать) имеются классы и методы нового ядра D7.
+Фильтруем по `IBLOCK_ID`:
 
-Отличия от старого API:
-- поддержка базы данных MySQL
-- используется ORM
-- поддержка ООП, весь код в одном месте, классе, наборе классов
-- единообразный код, однаковые названия, вызовы, параметры, возрат
-- поддержка простраства имён
-- отсутствие глобальных переменных
-- унифицированные события
-- поддержка автозагрузки (autoload)
+    $dbItems = \Bitrix\Iblock\ElementTable::getList(array(
+      'select' => array('ID', 'NAME', 'IBLOCK_ID'),
+      'filter' => array('IBLOCK_ID' => 1)
+    ))->fetchAll();
 
-## БП
-- добавить свой класс /local/yolva/classes/bp/
-- создать два класса и метода:
-  - EstimateHelper.php (класс также)
-    - checkDeliveryPlatform(#ID_СМЕТЫ) (проверяем платформу представления)
-  - TestResourcesHelper.php
-    - checkDeliveryPlatform(#ID_СМЕТЫ) (проверяем платформу представления)
-- оба метода возвращают массив полями Crispy и consoleT1Cloud
-- значения полей true или false
+    echo '<pre>';
+    print_r($dbItems); // Выводим все элементы инфоблока 1
+    echo '</pre>';
 
-TEST_RESOURCES - $code  
-public static function getEntityTypeIdByCode($code) получаю id смарт процесса  
-public static function getItemsByParameters($entityTypeId, array $parameters): array для получения  элементов смартпроцессов по фильтру, можно работать как с ORM
+Пользовательские свойства хранятся в двух местах:
+- `Магазин > Каталог > Свойства товаров`,
+- `Настройки > Настройки продукта > Пользовательские поля`.
 
-public static function getItem($entityTypeId, $entityId) получает id смарт процесса и id элемента смарт процесса
 
-после того как данные получили:  
-local/php_interface/yolva/classes/ServiceContainer/Operations/BeforeAddQuote.php
+## Символьный код API
+https://mrcappuccino.ru/blog/post/iblock-elements-bitrix-d7
 
-со строчки 25  
-getData(); массив получаем  
-
-1. метод:  
-EstimateHelper::checkDeliveryPlatform  
-- получив ID сметы, необходимо из смарт-процесса продукты сметы выбрать все элементы, с привязкой к полученно ID сметы
-- перебрая полученные элементы и смотрим поле продуктовый каталог (считываем id элемента смарт-процесса продуктовый каталог)
-- считываем данные по найденному ID элемента смарт-процесса продуктовый каталог
-- проверяем значение в поле платформа предоставления (enumerate)
-- ищем в id смете есть хотябы по одному Crispy и consoleT1Cloud (потом прерываем перебор)
-
-2. метод:  
-TestResourcesHelper::checkDeliveryPlatform
-- почти тоже самое только начинается с ID тестовых ресурсов
-- получив ID элемента СП (смарт-процесс) тестовые ресурсы, необходимо из смарт-процесса `тестовые продукты` выбрать все элементы, с привязкой к полученно ID `тестовые ресурсы`
+## Разное
+- https://href.kz/blog/bitrix/api-dlya-raboty-s-infoblokami-v-bitrix-d7
