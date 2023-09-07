@@ -11,6 +11,26 @@
       // Код выполнится только для авторизованных пользователей
     }
 
+## Работаем в PHP консоли
+Получаем доступ к методу класса модуля:
+
+    use Yolva\Local\EventHandlers\Main;
+    $a = Main::hello();
+
+    echo '<pre>';
+    print_r($a);
+    echo '</pre>';
+
+    // Сам класс
+    class Main {
+      public static function hello() {
+        echo 'hello';
+      }
+      public static function by() {
+        return self::hello();
+      }
+    }
+
 ## Дебаггинг при работе с событиями
 https://dev.1c-bitrix.ru/api_d7/bitrix/main/diag/debug/index.php  
 Debug класс для проведения отладки ajax-запросов, крон-файлов и решения других подобных задач.
