@@ -1,5 +1,6 @@
 # CRM
 - CRM в D7:            https://dev.1c-bitrix.ru/api_d7/bitrix/crm/index.php
+- Новое API CRM:       https://dev.1c-bitrix.ru/api_d7/bitrix/crm/crm_new_api.php
 - Модуль CRM:          https://bx24devbook.website.yandexcloud.net/Modul_CRM/O_module.html
 - События CRM:         https://dev.1c-bitrix.ru/api_help/crm/crm_events.php
 - Работа с элементами: https://dev.1c-bitrix.ru/api_d7/bitrix/crm/elements.php

@@ -4,6 +4,7 @@ https://dev.1c-bitrix.ru/api_d7/bitrix/crm/service/container.php
 https://dev.1c-bitrix.ru/api_d7/bitrix/crm/field/index.php  
 https://dev.1c-bitrix.ru/api_d7/bitrix/crm/item/index.php - методы элементов смарт-процесса  
 https://dev.1c-bitrix.ru/api_d7/bitrix/crm/service/operation/index.php  
+https://dev.1c-bitrix.ru/api_d7/bitrix/crm/crm_owner_type/identifiers.php - ID сущностей, в конце страницы есть смарт-процессы
 Абстрактный класс фабрика (factory) - новая технология работы со смарт-процессами.  
 
 Абстрактный класс фабрики, воспроизводит паттерн проектирования **Абстрактная фабрика**, где для каждого типа сущности есть своя фабрика. Реализация фабрики для каждого типа возвращает набор классов, специфичных именно для **этого типа**. Сервис фабрики является входной точкой всегда, когда необходимо работать с данными, специфичными для конкретного типа сущности.
@@ -19,6 +20,11 @@ https://dev.1c-bitrix.ru/api_d7/bitrix/crm/service/operation/index.php
     // Создаём фабрику (factory) смарт-процессов
     $typeid = '139'; // ID смарт-процесса
     $factory = Service\Container::getInstance()->getFactory($typeid);
+
+## Поля сущности смарт-процесса
+Смотреть в админке тут: http://site.loc/bitrix/admin/perfmon_table.php?lang=ru&table_name=b_crm_dynamic_type
+
+    var_dump(\CCrmOwnerType::IsDefined($typeid)); // вернёт true если есть такая сущность
 
 ## Получаем коды полей элемента и их значения
 Также выведутся и пользовательские поля.
@@ -51,7 +57,7 @@ https://dev.1c-bitrix.ru/api_d7/bitrix/crm/service/operation/index.php
     print_r($item->getData());
     echo '</pre>';
 
-## Возвращает описание пользовательских полей этого типа
+## Пользовательские свойства элемента смарт-процесса
 
     $uf = $factory->getUserFields();
 
@@ -230,16 +236,6 @@ https://dev.1c-bitrix.ru/api_d7/bitrix/crm/service/operation/index.php
       echo "$i ";
       echo $element->getTitle();
       echo '<br />';
-      break;
-      $i++;
-    }
-
-    // Не работает
-    $i = 1;
-    foreach ($elements as $element) {
-      echo '<pre>';
-      prent_r($element);
-      echo '</pre>';
       break;
       $i++;
     }
