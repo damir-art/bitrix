@@ -1,28 +1,83 @@
 # Работаем с инфоблоками
+Таблицы и их поля работающие с инфоблоками см в `table.md`.
 
+Перед началом работы с инфоблоками, нужно сначала его подключить:
 
-WorkFlow:
-- сначала получем ID или CODE инфоблока, через `IblockTable::getList()`
-- за тем по полученному ID или CODE, выбираем элементы инфоблока, свойства, разделы и т.д.
-
-Выберем все новости на сайте. Создаём страницу test.php, в ней размещаем код. Например перейдя в админку новосте у него в URL будет `type=news`, `IBLOCK_ID=1`.
-
-    // Перед использованием модуля инфоблока подключаем его
     \Bitrix\Main\Loader::includeModule('iblock');
+    $iblockListObj = \Bitrix\Iblock\IblockTable::getList(); // Получаем объект списка инфоблоков (не принтить)
+    $iblockListArr = $iblockListObj->fetchAll(); // Получаем массив списка инфоблоков (можно принтить)
+
+    echo '<pre>';
+    print_r($iblockListArr);
+    echo '</pre>';
+
+## Выборка через getList()
+
+  $dbItems = \Bitrix\Iblock\ElementTable::getList(array(
+    'order'  => array('SORT' => 'ASC'),                           // сортировка
+    'select' => array('ID', 'NAME', 'IBLOCK_ID', 'SORT', 'TAGS'), // выбираемые поля, без свойств. Свойства можно получать на старом ядре \CIBlockElement::getProperty
+    'filter' => array('IBLOCK_ID' => 4),                          // фильтр только по полям элемента, свойства (PROPERTY) использовать нельзя
+    'group' => array('TAGS'), // группировка по полю, order должен быть пустой
+    'limit' => 1000,          // целое число, ограничение выбираемого кол-ва
+    'offset' => 0,            // целое число, указывающее номер первого столбца в результате
+    'count_total' => 1,       // дает возможность получить кол-во элементов через метод getCount()
+    'runtime' => array(),     // массив полей сущности, создающихся динамически
+    'data_doubling' => false, // разрешает получение нескольких одинаковых записей
+    'cache' => array(         // Кеш запроса. Сброс можно сделать методом \Bitrix\Iblock\ElementTable::getEntity()->cleanCache();
+      'ttl' => 3600,          // Время жизни кеша
+      'cache_joins' => true   // Кешировать ли выборки с JOIN
+    ),
+  ));
+
+Пример выведем `ID`, `NAME`, `CODE` и `IBLOCK_TYPE_ID` инфоблока, используя два подхода, первый проходимся циклом while по объекту, второй это проходимся циклом foreach по массиву полученном через fetchAll():
+
+    \Bitrix\Main\Loader::includeModule('iblock');
+    $iblockListObj = \Bitrix\Iblock\IblockTable::getList([
+      'select' => array( 'ID', 'NAME', 'CODE', 'IBLOCK_TYPE_ID' ),
+    ]);
+
+    // Работаем в цикле while с объектом (чтобы проверить код ниже, этот нужно закоментить)
+    while($iblockListElement = $iblockListObj->fetch()) {
+      echo '<pre>';
+      print_r($iblockListElement);
+      echo '</pre>';
+    }
+
+    // Работаем в цикле foreach с массивом
+    $iblockListArr = $iblockListObj->fetchAll(); // Получаем массив списка инфоблоков (можно принтить)
+
+    // Выводим список инфоблоков в массиве
+    echo '<pre>';
+    print_r($iblockListArr);
+    echo '</pre>';
+
+    // Используем цикл foreach
+    foreach($iblockListArr as $iblockListItem) {
+      echo 'ID: ' . $iblockListItem['ID'] . '<br />';
+      echo 'NAME: ' . $iblockListItem['NAME'] . '<br />';
+      echo 'CODE: ' . $iblockListItem['CODE'] . '<br />';
+      echo 'IBLOCK_TYPE_ID: ' . $iblockListItem['IBLOCK_TYPE_ID'];
+      echo '<hr />';
+    }
 
 `getList([])` возвращает объект, у этого объекта есть следующие методы:
-- `$obj->fetch()` - получение текущей записи, можно выполнять итерацию в цикле while,
+- `$obj->fetch()` - получение одной записи, первой в списке, можно выполнять итерацию в цикле while,
 - `$obj->fetchRaw()`- аналог `$obj->fetch()`,
 - `$obj->fetchAll()`- получение всего списка записей,
 - `$obj->getCount()` - количество записей, без учета limit (в запросе должно быть так же указано count_total = 1),
 - `$obj->getSelectedRowsCount()`- кол-во записей, с учетом limit
 
-Также вам понадобится:  
-Пользовательские свойства хранятся в двух местах:
+WorkFlow:
+- сначала получем ID или CODE инфоблока, через `IblockTable::getList()`
+- затем по полученному ID или CODE, выбираем элементы инфоблока, свойства, разделы и т.д.
+
+Выберем все новости на сайте. Создаём страницу test.php, в ней размещаем код. Проверить ID (IBLOCK_ID) или IBLOCK_TYPE_ID инфоблока можно перейдя в админку новостей, у него в URL будет `type=news`, `IBLOCK_ID=1`.
+
+Также вам может понадобится, пользовательские свойства хранятся в двух местах:
 - `Магазин > Каталог > Свойства товаров`,
 - `Настройки > Настройки продукта > Пользовательские поля`.
 
-## Выборка инфоблоков:
+## Сущности инфоблоков
 TypeTable - `b_iblock_type` имя таблицы в БД.
 
     \Bitrix\Iblock\TypeTable::getList();                // Список типов инфоблоков
@@ -32,65 +87,6 @@ TypeTable - `b_iblock_type` имя таблицы в БД.
     \Bitrix\Iblock\SectionTable::getList();             // Список разделы инфоблоков
     \Bitrix\Iblock\ElementTable::getList();             // Список элементов инфоблоков
     \Bitrix\Iblock\InheritedPropertyTable::getList();   // Список наследуемых свойств (SEO шаблоны)
-
-- `->fetch()` - получаем первый элемент из выборки (массив), можно использовать в цикле для перебора,
-- `->fetchAll()` - получаем все элементы из выборки (массив массивов),
-
-### Все типы инфоблоков
-Пример, получаем список всех типов инфоблоков на сайте:
-
-    $iblockTypeList = \Bitrix\Iblock\TypeTable::getList()->fetchAll();
-
-    echo '<pre>';
-    print_r($iblockTypeList); // Получаем список всех типов инфоблоков на сайте
-    echo '</pre>';
-
-### Получаем инфоблок
-Получаем инфоблок по его ID или CODE:
-
-    // Получаем инфоблок по его CODE или ID
-    $iblockNews = \Bitrix\Iblock\IblockTable::getList([
-      'filter' => ['CODE' => 'news'],
-    ])->fetch();
-
-    echo '<pre>';
-    print_r($iblockNews['CODE']); // news
-    print_r($iblockNews['ID']);   // 1
-    echo '</pre>';
-
-### Свойства инфоблока
-Выводим свойства полученного инфоблока. Чтобы получить имя поля `IBLOCK_ID` (не его значение), нужно вывести все свойства инфоблока:
-
-    // Получение списка свойств информационного блока
-    $iblockNewsProps = \Bitrix\Iblock\PropertyTable::getList([
-      'filter' => ['IBLOCK_ID' => $iblockNews['ID']],
-    ])->fetch();
-
-    echo '<pre>';
-    print_r($iblockNewsProps);
-    echo '</pre>';
-
-### Множественное свойство инфоблока
-Свойства бывают как у инфоблоков так и у элементов инфоблока.  
-Получаем множественные свойства инфоблоков.  
-Сначала выводим список всех пользовательских свойств:  
-  `\Bitrix\Iblock\PropertyEnumerationTable::getList()->fetchAll();`  
-Затем получаем пользовательское свойство по его `PROPERTY_ID`.
-
-    // Получение списка множественных свойств информационного блока
-    $dbEnums = \Bitrix\Iblock\PropertyEnumerationTable::getList([
-      'order' => array('SORT' => 'asc'),
-      'filter' => ['PROPERTY_ID' => $arIblockProp[ID]],
-    ]);
-
-    while($arEnum = $dbEnums->fetch()) {
-      // В существующем массиве создаём ключ ENUM_LIST и в него добавляем массивы свойств по ID
-      $arIblockProp['ENUM_LIST'][$arEnum['ID']] = $arEnum;
-    }
-
-    echo '<pre>';
-    print_r($arIblockProp);
-    echo '</pre>';
 
 ## Выборка элементов
 ElementTable - `b_iblock_element` имя таблицы в БД.
@@ -203,9 +199,6 @@ https://dev.1c-bitrix.ru/community/webdev/user/654351/blog/36908/ (здесь в
 - `updateMulti($primaries, $data, $ignoreEvents = false)`,
 - `enableCrypto($field, $table = null, $mode = true)` - метод устанавливает флаг поддержки шифрования для поля 17.5.14,
 - `cryptoEnabled($field, $table = null)` - метод возвращает true если шифрование разрешено для поля. 17.5.14
-
-## Символьный код API
-https://mrcappuccino.ru/blog/post/iblock-elements-bitrix-d7
 
 ## Разное
 - https://href.kz/blog/bitrix/api-dlya-raboty-s-infoblokami-v-bitrix-d7 (чек)

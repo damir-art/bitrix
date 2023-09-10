@@ -2,6 +2,8 @@
 Имена таблиц инфоблоков и названия полей: https://dev.1c-bitrix.ru/api_help/iblock/fields.php
 
 - b_iblock - таблица инфоблоков
+  - b_iblock_property - свойства инфоблоков
+  - b_iblock_property_enum - свойства инфоблоков enum
 
 - b_iblock_section - разделы
   - b_iblock_section_property - свойства разделов
@@ -9,9 +11,7 @@
 
 - b_iblock_element - элементы
   - b_iblock_fields - поля элементов
-  - b_iblock_property - свойства элементов
   - b_iblock_element_property - значения cвойств элемента
-  - b_iblock_property_enum - значения свойств "список"
 
 - b_iblock_type - таблица типов инфоблоков
 - b_iblock_site - привязка инфоблока к сайтам
