@@ -1,5 +1,19 @@
-## Поля инфоблока
-Открыв таблицу инфоблоков `b_iblock` там будут теже поля что и ниже в выводе.
+# Поля инфоблока
+Класс IblockTable работает с таблицей `b_iblock`.  
+Таблица `b_iblock` содержит инфоблоки сайта и поля, что и ниже в выводе.
+
+Выводим список всех инфоблоков сайта:
+
+    \Bitrix\Main\Loader::includeModule('iblock');
+
+    $iblockObj = \Bitrix\Iblock\IblockTable::getList();
+
+    $iblockArrs = $iblockObj->fetchAll();
+    //$iblockArrs = $iblockObj->fetch(); // Выведется первый инфоблок
+
+    echo '<pre>';
+    print_r($iblockArrs);
+    echo '</pre>';
 
 Получаем инфоблок по его ID или CODE:
 
@@ -10,7 +24,6 @@
     ]);
 
     $iblockNewsArr = $iblockNewsObj->fetch();
-    //$iblockNewsArrs = $iblockNewsObj->fetch(); // Появится индекс [0]
 
     echo '<pre>';
     print_r($iblockNewsArr);

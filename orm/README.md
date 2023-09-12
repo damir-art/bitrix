@@ -4,6 +4,10 @@ https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&CHAPTER_ID=05748
 Операции с сущностями: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=2244  
 Курс: https://academy.1c-bitrix.ru/education/?COURSE_ID=85&LESSON_ID=7255
 
+https://o2k.ru/blog/dev/avto-gen-orm-klassov-dlya-tablic - создаём ORM для пользовательской таблицы  
+https://sreggh.ru/article/tablicy-bd-bitrix  
+https://sreggh.ru/article/rabota-s-polzovatelyami-v-bitrix  
+
 ORM (англ. Object-relational mapping, рус. Объектно-реляционное отображение) - технология программирования, которая связывает базы данных с концепциями объектно-ориентированных языков программирования, создавая «виртуальную объектную базу данных».
 
 В старом ядре на каждую сущность программируется свой `GetList`, `Update`, `Add`, `Delete`.

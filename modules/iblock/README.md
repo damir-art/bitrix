@@ -1,6 +1,66 @@
 # Работаем с инфоблоками
-Таблицы и их поля работающие с инфоблоками см в `table.md`.
+https://dev.1c-bitrix.ru/api_help/iblock/index.php  
 
+Модуль Информационные блоки - мощный и в то же время гибкий механизм для хранения и выборки информации различными способами. API модуля состоит из нескольких высокоуровневых функций для выборки данных в публичном разделе сайта и набора классов с низкоуровневыми методами для более специализированной работы.
+
+Перед использованием модуля необходимо проверить установлен ли он и подключить его при помощи конструкции:
+
+    // Старое API
+    if( CModule::IncludeModule("iblock") ) {
+      //здесь можно использовать функции и классы модуля
+    }
+
+    // D7
+    if( \Bitrix\Main\Loader::includeModule('iblock') ) {
+      //здесь можно использовать функции и классы модуля
+    }
+
+\Bitrix\Main\Loader::includeModule('iblock') - загружает модуль в ваш код.
+
+## Сущности инфоблоков
+Как работать с сущностями в коде:
+
+    \Bitrix\Iblock\TypeTable::getList();                // Список типов инфоблоков
+    \Bitrix\Iblock\IblockTable::getList();              // Список инфоблоков
+    \Bitrix\Iblock\PropertyTable::getList();            // Список свойств инфоблоков
+    \Bitrix\Iblock\PropertyEnumerationTable::getList(); // Список значений свойств (множественных), хранимых отдельно
+    \Bitrix\Iblock\SectionTable::getList();             // Список разделы инфоблоков
+    \Bitrix\Iblock\ElementTable::getList();             // Список элементов инфоблоков
+    \Bitrix\Iblock\InheritedPropertyTable::getList();   // Список наследуемых свойств (SEO шаблоны)
+
+Например TypeTable это класс, у этого класса есть таблица `b_iblock_type` в БД.  
+Таблицы и их поля работающие с инфоблоками см. в `table.md`, с помощью таблиц можно изучить поля сущностей.
+
+Список всех сущностей:
+- `TypeTable` - класс для работы с таблицей типов информационных блоков,
+- `TypeLanguageTable` - класс для работы с таблицей языковых параметров типов инфоблоков,
+- `IblockTable` - класс для работы с таблицей информационных блоков,
+- `PropertyTable` - класс для работы с таблицей свойств инфоблоков,
+- `IblockFieldTable` - класс для работы с таблицей полей инфоблоков,
+- `SectionTable` - класс для работы с таблицей разделов инфоблоков,
+- `SectionPropertyTable` - класс для работы с таблицей свойств разделов,
+- `SectionElementTable` - класс для работы с таблицей элементов разделов,
+- `ElementTable` - класс для работы с таблицей элементов инфоблоков,
+- `PropertyEnumerationTable` - класс для работы с таблицей вариантов значений свойств типа Список,
+
+- `IblockGroupTable` - класс для работы с таблицей прав доступа к инфоблокам,
+- `IblockMessageTable` - класс для работы с таблицей подписей и заголовков объектов инфоблоков,
+- `IblockSiteTable` - класс для работы с таблицей привязки инфоблоков к сайтам,
+- `IblockRssTable` - класс для работы с таблицей привязок полей для выгрузки в RSS,
+
+- `InheritedPropertyTable` - класс для работы с таблицей шаблонов вычисляемых наследуемых свойств,
+- `SenderEventHandler` - технический класс для сообщения с модулем Email-маркетинг,
+- `SequenceTable` - класс для работы с таблицей счетчиков,
+
+- `Template` - пространство содержит классы для работы с шаблонами SEO свойств,
+- `BizprocType` - пространство содержит классы для работы со значениями полей инфоблоков пользовательских типов в бизнес-процессах,
+- `Component` - пространство содержит классы поддержки компонентов,
+- `Model` - пространство имен содержит классы для механизма единого управления свойствами,
+- `Helpers` - пространство содержит вспомогательные классы,
+- `PropertyIndex` - пространство содержит классы для работы с индексами инфоблоков,
+- `InheritedProperty` - пространство содержит классы для работы с наследуемыми вычисляемыми свойствами.
+
+## Начало работы
 Перед началом работы с инфоблоками, нужно сначала его подключить:
 
     \Bitrix\Main\Loader::includeModule('iblock');
@@ -77,107 +137,6 @@ WorkFlow:
 - `Магазин > Каталог > Свойства товаров`,
 - `Настройки > Настройки продукта > Пользовательские поля`.
 
-## Сущности инфоблоков
-TypeTable - `b_iblock_type` имя таблицы в БД.
-
-    \Bitrix\Iblock\TypeTable::getList();                // Список типов инфоблоков
-    \Bitrix\Iblock\IblockTable::getList();              // Список инфоблоков
-    \Bitrix\Iblock\PropertyTable::getList();            // Список свойств инфоблоков
-    \Bitrix\Iblock\PropertyEnumerationTable::getList(); // Список значений свойств (множественных), хранимых отдельно
-    \Bitrix\Iblock\SectionTable::getList();             // Список разделы инфоблоков
-    \Bitrix\Iblock\ElementTable::getList();             // Список элементов инфоблоков
-    \Bitrix\Iblock\InheritedPropertyTable::getList();   // Список наследуемых свойств (SEO шаблоны)
-
-## Выборка элементов
-ElementTable - `b_iblock_element` имя таблицы в БД.
-
-Получаем все значения полей элемента, чтобы отфильтровать по необходимому:
-
-    $dbItems = \Bitrix\Iblock\ElementTable::getList([])->fetch();
-
-Получаем все элементы инфоблока, фильтруем по `IBLOCK_ID`:
-
-    $dbItems = \Bitrix\Iblock\ElementTable::getList(array(
-      'select' => array('ID', 'NAME', 'IBLOCK_ID'),
-      'filter' => array('IBLOCK_ID' => 1)
-    ))->fetchAll();
-
-    echo '<pre>';
-    print_r($dbItems); // Выводим все элементы инфоблока 1
-    echo '</pre>';
-
-### Получаем свойства элементов инфоблока
-Получаем все элементы инфоблока со свойствами:
-
-    // Выборка элементов инфоблока
-    $dbItems = \Bitrix\Iblock\ElementTable::getList(array(
-      'select' => array('ID', 'NAME', 'IBLOCK_ID'),
-      'filter' => array('IBLOCK_ID' => 1)
-    ));
-
-    while ($arItem = $dbItems->fetch()){
-      // Собираем свойства элемента
-      $dbProperty = \CIBlockElement::getProperty(
-        $arItem['IBLOCK_ID'],
-        $arItem['ID']
-      );
-      // Добавляем эти свойства по ключю PROPERTIES
-      while($arProperty = $dbProperty->Fetch()) {
-        $arItem['PROPERTIES'][] = $arProperty; // Наверно можно обойтись и без []
-      }
-      echo '<pre>';
-      print_r($arItem); // Выводим все элементы инфоблока 1
-      echo '</pre>';
-    }
-
-Получаем элемент со свойствами:  
-https://dev.1c-bitrix.ru/community/webdev/user/654351/blog/36908/ (здесь в примере в select пропущен IBLOCK_ID):  
-
-    $res = \Bitrix\Iblock\ElementTable::getList(array(
-      "select" => array("ID", "NAME", 'IBLOCK_ID'),
-      "filter" => array("IBLOCK_ID" => 1),
-      "order"  => array("ID" => "ASC")
-    ));
-
-    while ($arItem = $res->fetch()) {
-      $dbProperty = \CIBlockElement::getProperty(
-        $arItem['IBLOCK_ID'], 
-        $arItem['ID'],
-        array("sort", "asc"), 
-        array()
-      );
-
-      while ($arProperty = $dbProperty->GetNext()) {
-        $arItem["PROPERTIES"][$arProperty['CODE']] = $arProperty;
-      }
-
-      echo "<pre>";
-      print_r($arItem);
-      echo "</pre>";
-    }
-
-Вместо `CIBlockElement` используем `ElementPropertyTable` с версии 19:
-
-    $res = \Bitrix\Iblock\ElementTable::getList(array(
-      "select" => array("ID", "*"),
-      "filter" => array("IBLOCK_ID" => 1, "ID" => 1),
-      "order"  => array("ID" => "ASC")
-    ));
-    while ($arItem = $res->fetch()) {
-      $propRes = \Bitrix\Iblock\ElementPropertyTable::getList(array(
-        "select" => array("ID", "*"),
-        "filter" => array("IBLOCK_ELEMENT_ID" => $arItem["ID"],),
-        "order"  => array("ID" => "ASC")
-      ));
-      while($prop = $propRes->Fetch())
-      {
-        $arItem["PROPERTIES"][$prop["IBLOCK_PROPERTY_ID"]] = $prop;
-      }
-      echo "<pre>".print_r($arItem, true)."</pre>";
-    }
-
-Не выводятся NAME, CODE и т.д. их можно получить через \Bitrix\Iblock\PropertyTable
-
 ## Методы классов инфоблока
 Помимо getList можно также воспользоваться следующими методами:
 - `getEntity()` - возвращает объект сущности,
@@ -202,3 +161,4 @@ https://dev.1c-bitrix.ru/community/webdev/user/654351/blog/36908/ (здесь в
 
 ## Разное
 - https://href.kz/blog/bitrix/api-dlya-raboty-s-infoblokami-v-bitrix-d7 (чек)
+- https://blog.budagov.ru/bitrix-d7-dlya-infoblokov/ (читать)

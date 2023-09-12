@@ -21,6 +21,19 @@ https://dev.1c-bitrix.ru/api_d7/bitrix/crm/crm_owner_type/identifiers.php - ID �
     $typeid = '139'; // ID смарт-процесса
     $factory = Service\Container::getInstance()->getFactory($typeid);
 
+## Получаем ID смарт-процесса
+ORM-объект `Bitrix\Crm\Model\Dynamic\TypeTable` класс-таблет для работы с таблицей смарт-процессов.
+
+    use Bitrix\Crm\Model\Dynamic\TypeTable;
+
+    // Получаем идентификатор смарт-процесса "Продуктовый каталог" QUOTE_PRODUCT_CATALOG
+    $query = array(
+      "select" => array("ENTITY_TYPE_ID"),
+      "filter" =>
+      array("CODE" => 'QUOTE_PRODUCT_CATALOG')
+    );
+    $idSpProductCatalog = TypeTable::getList($query)->fetch()['ENTITY_TYPE_ID'];
+
 ## Поля сущности смарт-процесса
 Смотреть в админке тут: http://site.loc/bitrix/admin/perfmon_table.php?lang=ru&table_name=b_crm_dynamic_type
 

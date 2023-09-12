@@ -16,3 +16,5 @@
 Для разрабов:
 - https://www.bitrix24.ru/apps/dev.php
 - https://bx24devbook.website.yandexcloud.net/S_cego_nacat.html
+
+Смотреть: https://www.youtube.com/watch?v=3lo9WCNbV5s
