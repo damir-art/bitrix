@@ -26,7 +26,11 @@
 
 - Скрипт проверки сервера: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=135&LESSON_ID=5412
 - Создаём БД в phpMyAdmin (root без пароля) utf8_general_ci (можно не создавать)
-- Скрипт установки Битрикс: https://www.1c-bitrix.ru/download/cms.php
+- Скрипт установки Битрикс располагается по адресу: https://www.1c-bitrix.ru/download/cms.php
+  - Скачайте файл bitrixsetup.php и запустите его введя в адресной строке браузера
+  - Коогда файл загрузит дистрибутив и появится окно "Начало установки"
+  - Перейдите по адресу `/bitrix/modules/main/lib/security/random.php`
+  - На строке 114, в начале метода `getStringByCharsets($length, $charsetList){ }` временно разместите код (см выше), после установки Битрикс удалите этот код
 - 1C-Битрикс: Управление сайтом -> Бизнес
 - Снимаем галочку "Регистрация продукта"
 - База данных:
