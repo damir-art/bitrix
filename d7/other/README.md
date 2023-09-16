@@ -1,6 +1,6 @@
 # Основное
 https://www.youtube.com/watch?v=F0jYQdTEJEo&list=PLzPivwyXljVWyIN-AuV1j-9XHR_b4mf9k&index=5  
-OOG PHP: https://www.youtube.com/watch?v=gbhFXNcxAYQ  
+ООП PHP: https://www.youtube.com/watch?v=gbhFXNcxAYQ  
 Git и PhpStorm: https://www.youtube.com/watch?v=9TJEoYnnEUU&list=PLd2_Os8Cj3t_NscvtE9xd0QATeYy-kNCU  
 
 - новый подход к API

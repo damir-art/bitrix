@@ -9,6 +9,9 @@
 - Курс REST API:         https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=266
 - Бот платформа Б24:     https://dev.1c-bitrix.ru/learning/course/?COURSE_ID=93
 
+Небольшие задачи по Битрикс ORM D7: https://estrin.pw/bitrix-d7-snippets/  
+Небольшие задачи по Битрикс D7: https://disweb.ru/cms/1c-bitrix/jadro-d7-primery-dokumentacija/
+
 https://www.acrit-studio.ru/pantry-programmer/knowledge-base/  
 https://href.kz/blog/list/bitrix  
 https://www.youtube.com/watch?v=Eid7ggQrM5E&list=PL8Kt1m2oRch5M1bA334BRwFybdDe38Byd&index=8  
@@ -16,6 +19,8 @@ https://www.youtube.com/watch?v=4pawCupacWo&list=PLY4rE9dstrJyqAWUVlT7PLGjdmPEwh
 https://hmarketing.ru/blog/bitrix/rabota-s-elementami-infoblokov-cherez-orm/  
 https://hmarketing.ru/blog/bitrix/  
 https://hmarketing.ru/blog/php/  
+
+https://docs.stmd.pro/  
 
 Блог: https://almat.su
 
@@ -37,4 +42,5 @@ MySQL https://www.youtube.com/watch?v=xeDYyIkb2GQ&list=PLJmPn1WIe0aCFJfxp2g0EMIc
 Создание интернет магазина, торговых предложений, умного фильтра, спецпредложений: https://1ps.ru/blog/sites/2019/sozdanie-internet-magazina-na-bitriks/
 
 Блог: https://www.tichiy.ru/wiki/  
-Ютуб канал: https://www.youtube.com/watch?v=eh6anywHL-U&list=PLoFURCeom_FW69pa7TQNpMsBE2s2gdu-y
+Ютуб канал: https://www.youtube.com/watch?v=eh6anywHL-U&list=PLoFURCeom_FW69pa7TQNpMsBE2s2gdu-y  
+Блог: https://pai-bx.com/wiki/1c-bitrix/  

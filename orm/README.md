@@ -8,6 +8,10 @@ https://o2k.ru/blog/dev/avto-gen-orm-klassov-dlya-tablic - создаём ORM д
 https://sreggh.ru/article/tablicy-bd-bitrix  
 https://sreggh.ru/article/rabota-s-polzovatelyami-v-bitrix  
 
+События: https://estrin.pw/bitrix-d7-snippets/s/orm-highloadblock-events/
+
+https://sreggh.ru/article/metody-orm-bitrix
+
 ORM (англ. Object-relational mapping, рус. Объектно-реляционное отображение) - технология программирования, которая связывает базы данных с концепциями объектно-ориентированных языков программирования, создавая «виртуальную объектную базу данных».
 
 В старом ядре на каждую сущность программируется свой `GetList`, `Update`, `Add`, `Delete`.

@@ -151,7 +151,7 @@ WorkFlow:
 - `getByPrimary($primary, array $parameters = array())` - метод возвращает выборку по первичному ключу сущности и по опциональным параметрам \Bitrix\Main\Entity\DataManager::getList,
 - `getConnectionName()` - метод возвращает имя соединения для сущности 12.0.9,
 - `getCount($filter = array(), array $cache = array())`- метод выполняет COUNT запрос к сущности и возвращает результат 12.0.10,
-- `getMap()` - метод возвращает описание карты сущностей 12.0.7,
+- `getMap()` - метод возвращает описание карты сущностей 12.0.7, ($map = \Bitrix\Iblock\ElementPropertyTable::getMap())
 - `getRow(array $parameters)` - возвращает один столбец (или null) по параметрам для \Bitrix\Main\Entity\DataManager::getList,
 - `getRowById($id)` - возвращает один столбец (или null) по первичному ключу сущности 14.0.0,
 - `query()` - создаёт и возвращает объект запроса для сущности,
@@ -163,3 +163,7 @@ WorkFlow:
 ## Разное
 - https://href.kz/blog/bitrix/api-dlya-raboty-s-infoblokami-v-bitrix-d7 (чек)
 - https://blog.budagov.ru/bitrix-d7-dlya-infoblokov/ (читать)
+- 20 версия Битрикс: \Bitrix\Iblock\Elements\ElementCatalogTable
+- Рботаем с элементами инфоблока через ORM и Символьный код API: https://estrin.pw/bitrix-d7-snippets/s/iblock-element-orm/
+- Символьный код API: https://hmarketing.ru/blog/bitrix/rabota-s-elementami-infoblokov-cherez-orm/
+- Символьный код API: https://it-svalka.ru/blog/bitrix/rabota-s-elementami-infobloka-sredstvami-orm-v-bitriks-d7/
