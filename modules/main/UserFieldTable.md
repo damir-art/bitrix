@@ -16,6 +16,25 @@ https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=3483
       echo '<pre>';
     }
 
+Вывод:
+
+    [400] => Array(
+      [ID] => 960
+      [ENTITY_ID] => IBLOCK_43_SECTION // Свойство разделов инфоблока с ID 43
+      [FIELD_NAME] => UF_MANAGER
+      [USER_TYPE_ID] => employee       // Тип пользовательского свойства
+      [XML_ID] => 
+      [SORT] => 100
+      [MULTIPLE] => N
+      [MANDATORY] => N
+      [SHOW_FILTER] => E
+      [SHOW_IN_LIST] => Y
+      [EDIT_IN_LIST] => Y
+      [IS_SEARCHABLE] => Y
+      [SETTINGS] => Array()
+    )
+
+
 Можно еще так:
 
     $userFieldObj = \Bitrix\Main\UserFieldTable::getList();
@@ -79,7 +98,7 @@ https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=3483
 ## Разное
 Работа с пользовательскими полями в битриксе реализована очень плохо, разработчики рекомендуют использовать пользовательские свойства, а не поля. Обновить пользовательское поле (скорее всего любое) можно так:
 
-    $GLOBALS["USER_FIELD_MANAGER"]->Update("ORDER", $id, Array("UF_CRM_123123"=>$value)); 
+    $GLOBALS["USER_FIELD_MANAGER"]->Update("ORDER", $id, Array("UF_CRM_123123"=>$value));
 
     ORDER - имя сущности, в данном случае заказ
     $id - айди элемента в котором нужно изменить поле

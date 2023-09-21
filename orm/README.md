@@ -1,4 +1,6 @@
 # ORM
+https://www.intervolga.ru/blog/projects/orm-om-nom-nom-ili-tayny-orm-v-1c-bitrix/  
+https://hmarketing.ru/blog/bitrix/orm-v-novom-yadre/  
 https://www.youtube.com/watch?v=1_xYUQzQHj8  
 https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&CHAPTER_ID=05748  
 Операции с сущностями: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=2244  

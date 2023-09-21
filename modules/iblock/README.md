@@ -1,5 +1,6 @@
 # Работаем с инфоблоками
 https://dev.1c-bitrix.ru/api_help/iblock/index.php  
+https://hmarketing.ru/blog/bitrix/orm-v-novom-yadre/  
 
 Модуль Информационные блоки - мощный и в то же время гибкий механизм для хранения и выборки информации различными способами. API модуля состоит из нескольких высокоуровневых функций для выборки данных в публичном разделе сайта и набора классов с низкоуровневыми методами для более специализированной работы.
 
@@ -66,10 +67,10 @@ https://dev.1c-bitrix.ru/api_help/iblock/index.php
 
     \Bitrix\Main\Loader::includeModule('iblock');
     $iblockListObj = \Bitrix\Iblock\IblockTable::getList(); // Получаем объект списка инфоблоков (не принтить)
-    $iblockListArr = $iblockListObj->fetchAll(); // Получаем массив списка инфоблоков (можно принтить)
+    $iblockListArrs = $iblockListObj->fetchAll(); // Получаем массив списка инфоблоков (можно принтить)
 
     echo '<pre>';
-    print_r($iblockListArr);
+    print_r($iblockListArrs);
     echo '</pre>';
 
 ## Выборка через getList()

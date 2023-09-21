@@ -1,6 +1,7 @@
 # Ссылки
-
 - Документация: https://dev.1c-bitrix.ru/docs/php.php
+- Новости документации: https://dev.1c-bitrix.ru/community/blogs/Docs_and_other/
+- Живое опписание АПИ: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=2534
 - Видеокурс: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=95
 - Курс Битрикс 24: https://www.bitrix24.ru/features/pages/training.php
 - Приложения REST и интеграция с Б24: https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=99

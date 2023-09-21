@@ -72,3 +72,29 @@ dumpToFile для объектов
 
 ## Если зависают кнопки
 Смотреть ответ сервера по сети. Настройки CRM бизнес процессы.
+
+## Чтобы не завис скрипт при запуске
+Скрипт помещаем внутри обычной страницы: http://code.matveevs.ru/cms/bitrix/bitrix-%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D1%8D%D0%BB%D0%B5%D0%BC%D0%B5%D0%BD%D1%82%D0%BE%D0%B2-%D0%B8%D0%B7-%D0%B8%D0%BD%D1%84%D0%BE%D0%B1%D0%BB%D0%BE%D0%BA%D0%B0/
+
+    // устанавливаем лимит выполнения скрипта 120 сек
+    set_time_limit(120);
+    // включаем вывод ошибочек
+    ini_set('error_reporting', E_ALL);
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    // включаем замер исполнения скрипта
+    $startTime = microtime(true);
+    
+    // логирование pid start
+    
+    $pid     = getmypid();
+    $file    = fopen('../logs/detelePid.txt', 'a+');
+    $message = "pid: [$pid] DELETE : " . date("d.m.Y H:i:s") . PHP_EOL;
+    
+    fwrite($file, $message);
+    fclose($file);
+    
+    // логирование pid end
+    
+    // подключаем prolog bitrix 
+    require $_SERVER["DOCUMENT_ROOT"] . '/bitrix/modules/main/include/prolog_before.php';
