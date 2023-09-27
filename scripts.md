@@ -98,3 +98,19 @@ dumpToFile для объектов
     
     // подключаем prolog bitrix 
     require $_SERVER["DOCUMENT_ROOT"] . '/bitrix/modules/main/include/prolog_before.php';
+
+## Автозагрузка
+Пример автозагрузки классов, допустим класс лежит в файле `asd.metrika/lib/counters.php`:
+
+    namespace Asd\Metrika;
+    class CountersTable extends Entity\DataManager {
+      public static function update() {
+      
+      }
+    }
+
+Класс `CountersTable` располагается в папке `lib/` и принадлежит модулю `asd.metrika`, к нему после подключения указанного модуля можно обращаться так:
+
+    \Asd\Metrika\CountersTable::update();
+
+

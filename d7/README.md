@@ -15,3 +15,7 @@ D7 это в первую очередь ядро, в котором есть н
 Чтобы получить доступ к пользовательским полям нужно получить доступ к классу `UserFieldTable`:
 
     $rsUserFields = \Bitrix\Main\UserFieldTable::getList();
+
+## Разное
+- Сниппеты: https://tichiy.ru/wiki/osnovnye-konstanty-funkcii-i-sposoby-vyvoda-v-shablonah-bitriks-d7-i-ne-tolko/
+- Аналоги: https://disweb.ru/cms/1c-bitrix/d7-analogi-funkcij-v-1s-bitriks/

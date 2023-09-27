@@ -2,7 +2,6 @@
 Создание модуля Битрикс.  
 https://falbar.ru/article/pishem-pervyj-modul-dlya-1s-bitriks-s-ispolzovaniem-yadra-d7  
 
-
 - `local/modules/damir.buttonup`
   - install/ - набор скриптов для установки и удаления модуля
     - assets/ - файлы JavaScript и CSS, подключаемые в пользовательской части

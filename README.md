@@ -3,6 +3,8 @@
 Блог (лучший): https://hmarketing.ru/blog/bitrix/  
 Блог новостей Битрикс.
 
+Быстрый старт разработчика: https://www.youtube.com/watch?v=exEO-sRrcnM&list=PLzPivwyXljVV100GMKcQAekdThrN2z6DQ
+
 ## Установка 1С-Битрикс
 Восстановление Битрикс происходит через создание резервной копии и файла restore.php, который нужно установить в корень домена.
 
