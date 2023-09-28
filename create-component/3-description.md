@@ -1,5 +1,5 @@
 # .description.php
-Файл .description.php предназначен для того, чтобы отобразить вывести его описание в визуальном дереве редактора.
+Файл .description.php предназначен для того, чтобы отобразить описание в визуальном дереве редактора.
 
 Данный файл может отсутсвовать, он никак не взаимодействует с `component.php`.  
 Копируем компонент `/bitrix/components/bitrix/news` в `/local/components/damir/news`  
@@ -69,4 +69,64 @@
 
 - `URL` - путь к корню компонента: http://bx.loc/bitrix/admin/fileman_admin.php?PAGEN_1=1&SIZEN_1=20&lang=ru&site=s1&path=%2Flocal%2Fcomponents%2Fdamir%2Fnews&show_perms_for=0
 - `SRC` - помещаем иконку в `/local/components/damir/news/images`, указываем путь: `/images/code.png`
-- `TITLE` - 
+- `TITLE` - Название кнопки
+
+Размещаем после массива `PATH`:
+
+    'AREA_BUTTONS' => array(
+      array(
+        'URL' => 'http://bx.loc/bitrix/admin/fileman_admin.php?PAGEN_1=1&SIZEN_1=20&lang=ru&site=s1&path=%2Flocal%2Fcomponents%2Fdamir%2Fnews&show_perms_for=0',
+        'SRC' => '/images/code.png',
+        'TITLE' => 'Перейти к корню компонента'
+      )
+    )
+
+Создаём кнопку на скрипт JS (массив помещаем внутрь `AREA_BUTTONS`):
+
+    array(
+      'URL' => 'javascript:alert(" Hello Button ")',
+      'SRC' => '/images/code.png',
+      'TITLE' => 'Код на JS'
+    )
+
+Сброс кеша у комплексного компонента. Создадим кнопку сброса кеша у комплексного компонента, по-умолчанию этой кнопки у комплексного нет. После ключа `AREA_BUTTONS` добавляем:
+
+    'CACHE_PATH' => 'Y'
+
+По клику по треугольнку, рядом с кнопкой отключить компонент, появится кнопка `Обновить кеш компонента`.
+
+Итоговый код файла `.description.php`:
+
+    if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
+
+    $arComponentDescription = array(
+      "NAME" => "Тестовый компонент Damir",
+      "DESCRIPTION" => "Описание тестового компонента Damir",
+      "ICON" => "/images/news_all.gif",
+      "COMPLEX" => "Y",
+      "PATH" => array(
+        "ID" => "damir_content",
+        "NAME" => "Компоненты Damir",
+        "CHILD" => array(
+          "ID" => "news",
+          "NAME" => "Новости Damir",
+          "SORT" => 100,
+          "CHILD" => array(
+            "ID" => "news_cmpx",
+          ),
+        ),
+      ),
+      'AREA_BUTTONS' => array(
+        array(
+          'URL' => 'http://bx.loc/bitrix/admin/fileman_admin.php?PAGEN_1=1&SIZEN_1=20&lang=ru&site=s1&path=%2Flocal%2Fcomponents%2Fdamir%2Fnews&show_perms_for=0',
+          'SRC' => '/images/code.png',
+          'TITLE' => 'Перейти к корню компонента'
+        ),
+        array(
+          'URL' => 'javascript:alert(" Hello Button ")',
+          'SRC' => '/images/code.png',
+          'TITLE' => 'Код на JS'
+        )
+      ),
+      'CACHE_PATH' => 'Y'
+    );
