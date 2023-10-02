@@ -3,6 +3,8 @@
 - Создание комопненты фформы: https://www.bbitrix.ru/pages/components/bitriks-komponent-obratnaya-svyaz-ajax/
 - Создание компонента формы: https://it-svalka.ru/blog/bitrix/sozdanie-kontaktnoy-formy-po-kanonam-bm/
 
+Переменные Битрикс, доступные в компоненте: https://ut11-web.ru/faq-1c-bitrix/variables-available-in-the-component-2-0-bitrix/
+
 Курс по созданию компонентов Битрикс.  
 https://www.youtube.com/@denisgorelov3236/videos
 

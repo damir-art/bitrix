@@ -63,6 +63,7 @@ https://hmarketing.ru/blog/bitrix/orm-v-novom-yadre/
 - `InheritedProperty` - пространство содержит классы для работы с наследуемыми вычисляемыми свойствами.
 
 ## Начало работы
+Получаем список всех инфоблоков на сайте .  
 Перед началом работы с инфоблоками, нужно сначала его подключить:
 
     \Bitrix\Main\Loader::includeModule('iblock');
@@ -71,6 +72,18 @@ https://hmarketing.ru/blog/bitrix/orm-v-novom-yadre/
 
     echo '<pre>';
     print_r($iblockListArrs);
+    echo '</pre>';
+
+Получаем инфоблок по его `code`:
+
+    \Bitrix\Main\Loader::includeModule('iblock');
+    $iblockListObj = \Bitrix\Iblock\IblockTable::getList([
+      'filter' => [ 'code' => 'crm_product' ]
+    ]);
+    $iblockListArr = $iblockListObj->fetch(); // Получаем массив списка инфоблоков (можно принтить)
+
+    echo '<pre>';
+    print_r($iblockListArr);
     echo '</pre>';
 
 ## Выборка через getList()

@@ -13,6 +13,8 @@
 Небольшие задачи по Битрикс ORM D7: https://estrin.pw/bitrix-d7-snippets/  
 Небольшие задачи по Битрикс D7: https://disweb.ru/cms/1c-bitrix/jadro-d7-primery-dokumentacija/
 
+Уроки Битрикс (есть по AJAX): https://ut11-web.ru/learning-eshop-on-1c-bitrix/ctreate-eshop-bitrix-start/
+
 https://www.acrit-studio.ru/pantry-programmer/knowledge-base/  
 https://href.kz/blog/list/bitrix  
 https://www.youtube.com/watch?v=Eid7ggQrM5E&list=PL8Kt1m2oRch5M1bA334BRwFybdDe38Byd&index=8  
