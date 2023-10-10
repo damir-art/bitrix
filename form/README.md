@@ -1,5 +1,6 @@
 # form
 Работа с формами.  
+Отправка формы.  
 При отправке писем, не сразу могут отправляться сообщения (как и появление файлов в C:\OSPanel\userdata\temp\email).
 
 - Форма AJAX: https://www.bbitrix.ru/pages/resheniya/forma-obratnoy-svyazi-ajax/ (чек, не работает если выйти из админки)

@@ -136,6 +136,37 @@ https://www.bbitrix.ru/pages/components/bitriks-komponent-obratnaya-svyaz-ajax/
     });
     </script>
 
+## local/components/test/feedback.send/templates/.default/style.css
+
+    .feedback_form{
+      display:block;
+      width:400px;
+      border:solid 1px #ccc;
+      border-radius:5px;
+      padding:10px;
+    }
+
+    .feedback_form .item{
+      margin-bottom:10px;
+      width:100%;
+      float:left;
+    }
+
+    .feedback_form .item label{
+      display:block;
+      width:150px;
+      float:left;
+    }
+
+    .feedback_form .item input[type='text'], .feedback_form .item textarea{
+      width:200px;
+      float:right;
+    }
+
+    .feedback_form .item textarea{
+      height:200px;
+    }
+
 ## site/test.php
 На странице размещаем компонент:
 
