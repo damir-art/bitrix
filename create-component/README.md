@@ -57,3 +57,7 @@
       "",                // шаблон компонента (.default)
       Array()            // настройки компонента, массив входящих параметров
     );
+
+Вызов компонента сокращенно:
+
+    $APPLICATION->IncludeComponent( "damir:complex.simple", "" );
