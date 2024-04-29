@@ -14,10 +14,11 @@
         <?php $APPLICATION->ShowHead(); ?> // Подключение мета-данных и внешних файлов
       </head>
 
-`ShowHead()` - выводит стили, метатеги, скрипты.
+`ShowHead()` - выводит стили, метатеги, скрипты.  
+Подключает файл `template_styles.css`
 
 ## Устанавливаем title
-    
+
     <title><?php $APPLICATION->ShowTitle(); ?></title>
     // <?$APPLICATION->ShowMeta("keywords");?> // не нужно если есть в структуре
     // <?$APPLICATION->ShowMeta("description");?> // не нужно если есть в структуре
@@ -40,7 +41,7 @@
 
 ## Подключаем изображения
 
-    <img src="<?php echo SITE_TEMPLATE_PATH ?>/img/logo.png" alt="" width="50" height="50" />
+    <img src="<?php echo SITE_TEMPLATE_PATH; ?>/img/logo.png" alt="" width="50" height="50" />
 
 Разное:
 - `<?php echo SITE_TEMPLATE_PATH; ?>` - путь к корню шаблона: `/local/templates/test_template`,
